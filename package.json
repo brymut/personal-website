@@ -1,0 +1,19 @@
+{
+  "name": "bryanmutai.co",
+  "version": "0.0.1",
+  "description": "This is a personal website build on next.js",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "Bryan Mutai bryan@bryanmutai.co",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^7.0.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
+}

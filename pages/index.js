@@ -1,8 +1,11 @@
 import HomepageLayout from "../components/HomepageLayout";
+import ShellColumn from "../components/ShellColumn";
 
 const Index = () => (
   <HomepageLayout>
-    <p>Hello Next.js</p>
+    <ShellColumn />
+    <ShellColumn />
+    <ShellColumn />
   </HomepageLayout>
 );
 

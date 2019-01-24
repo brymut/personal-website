@@ -5,7 +5,7 @@ const BorderedItemList = props => (
     {props.items && props.items.length > 0 ? (
       <ul className="bordered-list">
         {props.items.map(item => (
-          <BorderedItem title={item.title} body={item.body} />
+          <BorderedItem info={item} />
         ))}
       </ul>
     ) : (

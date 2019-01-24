@@ -1,7 +1,7 @@
 const BorderedItem = props => (
   <li className="bordered-item">
-    <h3>{props.title}</h3>
-    <p>{props.body}</p>
+    <h3>{props.info.name}</h3>
+    <p>{props.info.summary}</p>
     <style global jsx>{`
       .bordered-item {
         width: 90%;

@@ -12,7 +12,6 @@
   "author": "Bryan Mutai bryan@bryanmutai.co",
   "license": "ISC",
   "dependencies": {
-    "crossenv": "0.0.2-security",
     "dotenv-webpack": "^1.7.0",
     "firebase": "^5.8.0",
     "next": "^7.0.2",

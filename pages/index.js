@@ -3,6 +3,8 @@ import ShellColumn from "../components/ShellColumn";
 import BorderedItemList from "../components/BorderedItemList";
 
 import firebase from "../lib/db.js";
+import SectionTitle from "../components/SectionTitle";
+import ContactSection from "../components/ContactSection";
 
 export default class Index extends React.Component {
   static async getInitialProps() {
@@ -41,9 +43,27 @@ export default class Index extends React.Component {
           reject([]);
         });
     });
+
+    let contact_data = await new Promise((resolve, reject) => {
+      firebase
+        .collection("about")
+        .get()
+        .then(function(querySnapshot) {
+          let contact_data;
+          querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            contact_data = doc.data();
+          });
+          resolve(contact_data);
+        })
+        .catch(error => {
+          reject([]);
+        });
+    });
     return {
       projects: project_data,
-      backlog: backlog_data
+      backlog: backlog_data,
+      contact: contact_data
     };
   }
 
@@ -52,66 +72,27 @@ export default class Index extends React.Component {
       <HomepageLayout>
         <ShellColumn>
           <section id="active-projects">
-            <div className="section-title">
-              <h1>Active Projects</h1>
-            </div>
+            <SectionTitle title="Active Projects" />
             <BorderedItemList items={this.props.projects} />
           </section>
         </ShellColumn>
 
         <ShellColumn>
-          <section id="active-projects">
-            <div className="section-title">
-              <h1>About</h1>
-            </div>
-            <p>
-              I am a software engineer with experience in full stack web
-              development, primarily using Python, Javascript and associated web
-              frameworks. With 3+ years experience in the field, I have been
-              involved in bringing many web projects from first-draft wireframe
-              designs to live production environments, serving thousands of
-              users per day. Both on physical, networked hardware on virtualised
-              environments using XEN/Chef/Docker and cloud-based deployments on
-              GoogleCPlatform and Digital Ocean. Projects I have been a part of
-              range from developing community centred projects in team
-              environments (subcity.org / openstates.org), building applications
-              in corporate contexts (sas.com/en_gb/company-information.html), to
-              building assistive developer tools for myself and others to use
-              (github.com/brymut/off-stack). In my spare time away from my
-              keyboard, I enjoy run a weekly community radio show on
-              subcity.org, skateboard and during term time, volunteer my time
-              with Codeclub codeclub.org.uk, an after-school club where children
-              build up programming skills.
-            </p>
+          <section id="contact">
+            <SectionTitle title="Contact" />
+            <ContactSection contactData={this.props.contact} />
           </section>
-          <section id="active-projects">
-            <div className="section-title">
-              <h1>Contact</h1>
-            </div>
-            <p>
-              For enquires and full CV please feel free to reach me at
-              work[at]bryanmutai.co Always open to hearing out new ideas and
-              community based project proposals. 😊 github.com/brymut
-              https://www.linkedin.com/in/bryanmutai/
-            </p>
+          <section id="about">
+            <SectionTitle title="About" />
+            <p>{this.props.contact.pageSummary}</p>
           </section>
         </ShellColumn>
         <ShellColumn>
-          <section id="active-projects">
-            <div className="section-title">
-              <h1>Backlog</h1>
-            </div>
+          <section id="backlog">
+            <SectionTitle title="Backlog" />
             <BorderedItemList items={this.props.backlog} />
           </section>
         </ShellColumn>
-        <style jsx>{`
-          .section-title {
-            width: 170px;
-            margin-left: 3;
-            background-color: black;
-            color: white;
-          }
-        `}</style>
       </HomepageLayout>
     );
   }

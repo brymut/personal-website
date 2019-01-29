@@ -17,6 +17,7 @@ export default class Index extends React.Component {
           querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             let document_data = doc.data();
+            document_data["id"] = doc.id;
             project_data.push(document_data);
           });
           resolve(project_data);
@@ -35,8 +36,10 @@ export default class Index extends React.Component {
           querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             let document_data = doc.data();
+            document_data["id"] = doc.id;
             backlog_data.push(document_data);
           });
+          console.log(backlog_data);
           resolve(backlog_data);
         })
         .catch(error => {

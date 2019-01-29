@@ -8,6 +8,12 @@ const BorderedItem = props => (
         border: 5px solid #000 !important;
         margin-bottom: 25px;
       }
+      .bordered-item h3 {
+        margin-inline-start: 3%;
+      }
+      .bordered-item p {
+        margin-inline-start: 3%;
+      }
     `}</style>
   </li>
 );

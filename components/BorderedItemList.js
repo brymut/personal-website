@@ -5,16 +5,17 @@ const BorderedItemList = props => (
     {props.items && props.items.length > 0 ? (
       <ul className="bordered-list">
         {props.items.map(item => (
-          <BorderedItem info={item} />
+          <BorderedItem info={item} key={item.id} />
         ))}
       </ul>
     ) : (
-      <p>Nothing to see here :P</p>
+      <p>Error check logs:P</p>
     )}
 
     <style jsx>{`
       .bordered-list {
         list-style-type: none;
+        padding-inline-start: 20px;
       }
     `}</style>
   </div>
